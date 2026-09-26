@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIIMS Rishikesh - Medical Counseling Admission Payment Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            800: '#102a43',
+                            900: '#0b1b2b',
+                        },
+                        teal: {
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom print stylesheet ensuring only receipt prints cleanly */
+        @media print {
+            body {
+                background: white !important;
+                color: #000 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only-container {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            .print-border {
+                border: 1px solid #cbd5e1 !important;
+            }
+        }
+    </style>
+</head>
+<body class="h-full font-sans text-slate-800 antialiased flex flex-col min-h-screen selection:bg-teal-500 selection:text-white">
+
+    <!-- Top Header / Navigation Bar -->
+    <header class="bg-navy-900 text-white shadow-lg sticky top-0 z-40 border-b border-navy-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-gradient-to-tr from-teal-600 to-emerald-500 p-2.5 rounded-xl shadow-md text-white flex items-center justify-center">
+                        <i class="fa-solid fa-hospital-user text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold tracking-wider uppercase text-teal-400 block">Medical Counseling Committee (MCC) • Govt. of India</span>
+                        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">
+                            Medical Counseling Admission Payment Portal
+                        </h1>
+                    </div>
+                </div>
+                
+                <!-- Security & SSL Indicator -->
+                <div class="hidden md:flex items-center space-x-4 text-xs">
+                    <div class="bg-slate-800/90 px-3.5 py-2 rounded-xl border border-slate-700 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-emerald-400 text-sm"></i>
+                        <div>
+                            <div class="text-white font-bold">256-Bit SSL Encrypted</div>
+                            <div class="text-slate-400 text-[10px]">Official Govt. Payment Gateway</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Candidate & Admission Summary Bar -->
+    <div class="bg-gradient-to-r from-navy-900 via-slate-900 to-navy-800 text-white py-6 border-b border-slate-800 shadow-md no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 shadow-xl">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                    <!-- Candidate Info -->
+                    <div class="flex items-start sm:items-center gap-4">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-white text-xl font-bold shadow-md border border-white/20">
+                                AS
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full" title="Verified Candidate"></span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <h2 class="text-lg font-bold text-white">Shibayan Ray</h2>
+                                <span class="bg-teal-500/20 text-teal-300 text-[11px] px-2.5 py-0.5 rounded-full font-semibold border border-teal-500/30">MBBS Candidate</span>
+                            </div>
+                            <p class="text-xs text-slate-300 mt-1 flex items-center gap-3 flex-wrap">
+                                <span><i class="fa-solid fa-id-card text-teal-400 mr-1"></i> Roll No: <strong>4608309556</strong></span>
+                                <span><i class="fa-solid fa-building-columns text-emerald-400 mr-1"></i> Course: <strong>MBBS (5.5 Yrs)</strong></span>
+                                <span><i class="fa-solid fa-graduation-cap text-amber-400 mr-1"></i> College: <strong>AIIMS Rishikesh</strong></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fee Summary Badge -->
+                    <div class="bg-slate-900/90 p-4 rounded-xl border border-teal-500/30 flex items-center justify-between lg:justify-end gap-6">
+                        <div>
+                            <span class="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Fixed Token Fee</span>
+                            <span class="text-xs text-slate-300">Round I Seat Acceptance</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-2xl font-extrabold text-emerald-400 font-mono">₹6,500</span>
+                            <span class="block text-[10px] text-slate-400">INR (Inclusive of Taxes)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION 1: PAYMENT SELECTION FORM -->
+        <div id="paymentFormSection" class="no-print space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200">
+                <div>
+                    <h2 class="text-lg font-bold text-navy-900 flex items-center gap-2">
+                        <i class="fa-solid fa-credit-card text-teal-600"></i> Select Payment Method
+                    </h2>
+                    <p class="text-xs text-slate-500">Choose your preferred payment gateway to submit admission token fee for AIIMS Rishikesh.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">
+                    <i class="fa-solid fa-lock text-emerald-600"></i> Gateway: NPCI / RBI Approved
+                </div>
+            </div>
+
+            <!-- Payment Grid Layout (Sidebar Tabs + Interactive Area) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Payment Method Sidebar Tabs -->
+                <div class="lg:col-span-4 bg-white rounded-2xl border border-slate-200 shadow-sm p-3 space-y-2">
+                    <span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider px-3 py-1 block">Payment Options</span>
+
+                    <!-- Tab Option 1: UPI -->
+                    <button type="button" onclick="switchTab('upi')" id="tab-upi" class="pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-teal-600 bg-teal-50/50 text-teal-900 transition font-medium text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-qrcode text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-slate-800 text-sm">UPI Payment</div>
+                                <div class="text-[11px] text-slate-500">GPay, PhonePe, Paytm, VPA</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-teal-600 tab-arrow"></i>
+                    </button>
+
+                    <!-- Tab Option 2: Debit / Credit Card -->
+                    <button type="button" onclick="switchTab('card')" id="tab-card" class="pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition font-medium text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                <i class="fa-regular fa-credit-card text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-slate-800 text-sm">Debit / Credit Card</div>
+                                <div class="text-[11px] text-slate-500">Visa, MasterCard, RuPay</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400 opacity-0 tab-arrow"></i>
+                    </button>
+
+                    <!-- Tab Option 3: Net Banking -->
+                    <button type="button" onclick="switchTab('netbanking')" id="tab-netbanking" class="pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition font-medium text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-building-columns text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-slate-800 text-sm">Internet Banking</div>
+                                <div class="text-[11px] text-slate-500">SBI, HDFC, ICICI, Axis, PNB...</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400 opacity-0 tab-arrow"></i>
+                    </button>
+
+                    <!-- Tab Option 4: Wallets -->
+                    <button type="button" onclick="switchTab('wallet')" id="tab-wallet" class="pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition font-medium text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-wallet text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-slate-800 text-sm">Wallets</div>
+                                <div class="text-[11px] text-slate-500">MobiKwik or Amazon Pay</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400 opacity-0 tab-arrow"></i>
+                    </button>
+
+                    <!-- Security Notice -->
+                    <div class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-500 space-y-1">
+                        <div class="font-semibold text-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-shield-cat text-teal-600"></i> Non-refundable Token Fee
+                        </div>
+                        <p>This payment secures your Round I seat allotment at AIIMS Rishikesh Floating Admission as per MCC guidelines.</p>
+                    </div>
+                </div>
+
+                <!-- Active Payment Form Panel -->
+                <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-6">
+                    
+                    <!-- TAB 1: UPI CONTENT -->
+                    <div id="content-upi" class="tab-content space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-navy-900">UPI Payment (Unified Payments Interface)</h3>
+                                <p class="text-xs text-slate-500">Pay using your preferred UPI app or custom Virtual Payment Address.</p>
+                            </div>
+                            <img src="https://placehold.co/120x35/0f172a/ffffff?text=UPI+Instant" alt="UPI Logo" class="h-8 object-contain rounded">
+                        </div>
+
+                        <!-- Quick Apps Selection -->
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Quick Select UPI App</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <label class="upi-app-option border-2 border-teal-500 bg-teal-50/40 p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-teal-600 transition text-center">
+                                    <input type="radio" name="upi_app" value="gpay" checked class="sr-only" onchange="toggleUpiMode('app')">
+                                    <i class="fa-brands fa-google-pay text-2xl text-blue-600 mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-800">Google Pay</span>
+                                </label>
+                                <label class="upi-app-option border-2 border-slate-200 p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-teal-500 transition text-center">
+                                    <input type="radio" name="upi_app" value="phonepe" class="sr-only" onchange="toggleUpiMode('app')">
+                                    <i class="fa-solid fa-mobile-screen-button text-xl text-purple-600 mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-800">PhonePe</span>
+                                </label>
+                                <label class="upi-app-option border-2 border-slate-200 p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-teal-500 transition text-center">
+                                    <input type="radio" name="upi_app" value="paytm" class="sr-only" onchange="toggleUpiMode('app')">
+                                    <i class="fa-solid fa-wallet text-xl text-cyan-600 mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-800">Paytm UPI</span>
+                                </label>
+                                <label class="upi-app-option border-2 border-slate-200 p-3 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-teal-500 transition text-center">
+                                    <input type="radio" name="upi_app" value="vpa" class="sr-only" onchange="toggleUpiMode('vpa')">
+                                    <i class="fa-solid fa-at text-xl text-emerald-600 mb-1"></i>
+                                    <span class="text-xs font-bold text-slate-800">Custom VPA</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Custom VPA Input (Hidden by default unless custom VPA selected) -->
+                        <div id="vpaInputContainer" class="space-y-2">
+                            <label for="upiVpa" class="block text-xs font-bold uppercase tracking-wider text-slate-600">Enter UPI ID / VPA</label>
+                            <div class="relative">
+                                <input type="text" id="upiVpa" placeholder="e.g. username@upi or mobile@paytm" class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-medium">
+                                <i class="fa-solid fa-at absolute left-3.5 top-3.5 text-slate-400"></i>
+                            </div>
+                            <p class="text-[11px] text-slate-500">A payment collect request will be sent to your mobile app.</p>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: CREDIT / DEBIT CARD CONTENT -->
+                    <div id="content-card" class="tab-content hidden space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-navy-900">Card Payment</h3>
+                                <p class="text-xs text-slate-500">All major Indian and International cards supported.</p>
+                            </div>
+                            <div class="flex items-center space-x-2 text-slate-500 text-lg">
+                                <i class="fa-brands fa-cc-visa text-blue-800"></i>
+                                <i class="fa-brands fa-cc-mastercard text-red-600"></i>
+                                <i class="fa-solid fa-credit-card text-emerald-700"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="cardholderName" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Cardholder Name</label>
+                                <input type="text" id="cardholderName" placeholder="As printed on card" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-medium">
+                            </div>
+
+                            <div>
+                                <label for="cardNumber" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Card Number</label>
+                                <div class="relative">
+                                    <input type="text" id="cardNumber" maxlength="19" placeholder="4532 •••• •••• 8921" class="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-mono tracking-wider">
+                                    <i class="fa-solid fa-credit-card absolute left-3.5 top-3.5 text-slate-400"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="cardExpiry" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Expiry Date</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="5" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-mono text-center">
+                                </div>
+                                <div>
+                                    <label for="cardCvv" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">CVV / CVC</label>
+                                    <input type="password" id="cardCvv" placeholder="•••" maxlength="4" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-mono text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: NET BANKING CONTENT -->
+                    <div id="content-netbanking" class="tab-content hidden space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-navy-900">Internet Banking</h3>
+                                <p class="text-xs text-slate-500">Direct authorization through your official retail bank portal.</p>
+                            </div>
+                            <i class="fa-solid fa-building-columns text-2xl text-slate-400"></i>
+                        </div>
+
+                        <!-- Popular Bank Icons -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Popular Banks</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <button type="button" onclick="selectBank('State Bank of India (SBI)')" class="bank-btn p-3 rounded-xl border border-slate-200 hover:border-teal-500 text-left transition flex items-center gap-2 bg-slate-50/50">
+                                    <i class="fa-solid fa-building text-blue-600 text-sm"></i>
+                                    <span class="text-xs font-semibold text-slate-800">State Bank of India</span>
+                                </button>
+                                <button type="button" onclick="selectBank('HDFC Bank')" class="bank-btn p-3 rounded-xl border border-slate-200 hover:border-teal-500 text-left transition flex items-center gap-2 bg-slate-50/50">
+                                    <i class="fa-solid fa-building text-red-700 text-sm"></i>
+                                    <span class="text-xs font-semibold text-slate-800">HDFC Bank</span>
+                                </button>
+                                <button type="button" onclick="selectBank('ICICI Bank')" class="bank-btn p-3 rounded-xl border border-slate-200 hover:border-teal-500 text-left transition flex items-center gap-2 bg-slate-50/50">
+                                    <i class="fa-solid fa-building text-amber-600 text-sm"></i>
+                                    <span class="text-xs font-semibold text-slate-800">ICICI Bank</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Full Bank Dropdown -->
+                        <div>
+                            <label for="bankSelect" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Or Choose All Indian Banks</label>
+                            <select id="bankSelect" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-medium bg-white">
+                                <option value="">-- Select Bank --</option>
+                                <option value="State Bank of India (SBI)">State Bank of India (SBI)</option>
+                                <option value="HDFC Bank">HDFC Bank</option>
+                                <option value="ICICI Bank">ICICI Bank</option>
+                                <option value="Axis Bank">Axis Bank</option>
+                                <option value="Punjab National Bank (PNB)">Punjab National Bank (PNB)</option>
+                                <option value="Bank of Baroda">Bank of Baroda</option>
+                                <option value="Canara Bank">Canara Bank</option>
+                                <option value="Union Bank of India">Union Bank of India</option>
+                                <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: WALLETS CONTENT -->
+                    <div id="content-wallet" class="tab-content hidden space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                            <div>
+                                <h3 class="text-base font-bold text-navy-900">Mobikwik or Amazon Wallet</h3>
+                                <p class="text-xs text-slate-500">Link your wallet account and pay instantly using registered mobile number.</p>
+                            </div>
+                            <i class="fa-solid fa-wallet text-2xl text-teal-600"></i>
+                        </div>
+
+                        <!-- Select Wallet Choice -->
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">Select Wallet Provider</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label class="wallet-option border-2 border-teal-500 bg-teal-50/40 p-4 rounded-xl flex items-center gap-3 cursor-pointer hover:border-teal-600 transition">
+                                    <input type="radio" name="wallet_provider" value="MobiKwik Wallet" checked class="sr-only">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">M</div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">MobiKwik Wallet</div>
+                                        <div class="text-[11px] text-slate-500">Instant cashback & wallet balance</div>
+                                    </div>
+                                </label>
+                                <label class="wallet-option border-2 border-slate-200 p-4 rounded-xl flex items-center gap-3 cursor-pointer hover:border-teal-500 transition">
+                                    <input type="radio" name="wallet_provider" value="Amazon Pay Wallet" class="sr-only">
+                                    <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-lg">A</div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">Amazon Pay Wallet</div>
+                                        <div class="text-[11px] text-slate-500">Pay using Amazon Pay Balance</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Number Input -->
+                        <div>
+                            <label for="walletMobile" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Registered Mobile Number</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-3.5 text-slate-500 text-sm font-bold">+91</span>
+                                <input type="tel" id="walletMobile" maxlength="10" placeholder="98765 43210" class="w-full pl-14 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm font-mono">
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">An OTP authorization prompt will be requested on this number.</p>
+                        </div>
+                    </div>
+
+                    <!-- Error Alert -->
+                    <div id="paymentErrorAlert" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl p-3 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-rose-500 text-base"></i>
+                        <span id="errorAlertText">Please fill in all required payment details correctly.</span>
+                    </div>
+
+                    <!-- Submit Payment Button Bar -->
+                    <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-xs text-slate-500">
+                            Amount Payable: <strong class="text-slate-900 text-base font-extrabold font-mono">₹6,500</strong>
+                        </div>
+                        <button type="button" onclick="processPayment()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-extrabold shadow-lg hover:shadow-teal-500/25 hover:scale-[1.01] active:scale-[0.99] transition-all text-sm flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-lock"></i> Pay INR 6,500 Securely
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: PAYMENT CONFIRMATION & RECEIPT PAGE (Initially Hidden) -->
+        <div id="receiptSection" class="hidden space-y-6">
+            
+            <!-- Success Notification Header (no-print) -->
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-2xl p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 no-print">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur border border-white/30 flex items-center justify-center text-3xl flex-shrink-0 text-white">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <span class="bg-emerald-300/30 text-emerald-100 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-white/20">Transaction Successful</span>
+                        <h2 class="text-2xl font-extrabold tracking-tight mt-1">Admission Token Fee Paid!</h2>
+                        <p class="text-xs text-emerald-100 mt-0.5">Your seat at <strong>AIIMS Rishikesh (MBBS)</strong> has been formally confirmed in Round I.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 w-full md:w-auto flex-wrap sm:flex-nowrap">
+                    <!-- Download Allotment Letter -->
+                    <a href="https://www.image2url.com/r2/default/documents/1790458470899-84ee9c60-892b-4084-a085-272dc7aca422.pdf" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-5 py-3 rounded-xl bg-white text-emerald-800 font-extrabold text-xs shadow-lg hover:bg-emerald-50 transition flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-file-arrow-down text-emerald-600 text-base"></i> Download Allotment Letter
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+                    </a>
+                    
+                    <!-- Print Receipt Button -->
+                    <button type="button" onclick="window.print()" class="w-full md:w-auto px-5 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur text-white font-bold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
+                        <i class="fa-solid fa-print"></i> Print Receipt
+                    </button>
+                </div>
+            </div>
+
+            <!-- OFFICIAL PRINTABLE RECEIPT CARD -->
+            <div class="bg-white rounded-2xl border border-slate-300 shadow-xl overflow-hidden print-only-container print-border">
+                
+                <!-- Receipt Official Header -->
+                <div class="p-6 sm:p-8 bg-slate-900 text-white border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-teal-600 flex items-center justify-center text-white text-2xl font-bold">
+                            <i class="fa-solid fa-hospital-user"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-teal-400 font-bold uppercase tracking-wider">Medical Counseling Committee (MCC)</span>
+                            <h3 class="text-lg font-extrabold text-white">Official Admission Fee Voucher & Receipt</h3>
+                            <p class="text-xs text-slate-300">AIIMS Rishikesh MBBS Admission • Academic Year 2026-27</p>
+                        </div>
+                    </div>
+                    <div class="text-left sm:text-right font-mono text-xs text-slate-300">
+                        <div class="text-teal-400 font-bold text-sm">STATUS: COMPLETED</div>
+                        <div>Ref: <strong class="text-white" id="rcptTxnId">TXN-2026-AIIMS-893211</strong></div>
+                    </div>
+                </div>
+
+                <!-- Receipt Body Content -->
+                <div class="p-6 sm:p-8 space-y-8">
+                    
+                    <!-- Candidate & Allotment Summary Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50/80 rounded-xl p-5 border border-slate-200 text-xs">
+                        <div class="space-y-2">
+                            <span class="text-slate-400 font-bold uppercase text-[10px] block border-b border-slate-200 pb-1">Candidate Details</span>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Candidate Name:</span>
+                                <span class="font-bold text-slate-900">Shibayan Ray</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">NEET UG Roll No:</span>
+                                <span class="font-bold text-slate-900">4608309556</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">All India Rank (AIR):</span>
+                                <span class="font-bold text-slate-900">218 (General / Open)</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <span class="text-slate-400 font-bold uppercase text-[10px] block border-b border-slate-200 pb-1">Allotment Info</span>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Allotted Institute:</span>
+                                <span class="font-bold text-teal-700">AIIMS Rishikesh</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Allocated Course:</span>
+                                <span class="font-bold text-slate-900">MBBS (Bachelor of Medicine)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500">Counseling Phase:</span>
+                                <span class="font-bold text-slate-900">NEET UG Round I</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Transaction Item Breakdown -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left">
+                            <thead class="bg-slate-100 text-slate-700 uppercase font-bold text-[10px] tracking-wider border-y border-slate-200">
+                                <tr>
+                                    <th class="py-3 px-4">Fee Item Description</th>
+                                    <th class="py-3 px-4">Payment Method</th>
+                                    <th class="py-3 px-4">Transaction Timestamp</th>
+                                    <th class="py-3 px-4 text-right">Amount (INR)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 font-medium">
+                                <tr>
+                                    <td class="py-4 px-4 font-bold text-slate-800">
+                                        Round I Admission Token Fee
+                                        <span class="block text-[10px] font-normal text-slate-500">AIIMS Rishikesh MBBS Seat Lock</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-700" id="rcptPayMethod">UPI (GPay / PhonePe)</td>
+                                    <td class="py-4 px-4 text-slate-600 font-mono" id="rcptTimestamp">Sep 25, 2026, 02:15 PM</td>
+                                    <td class="py-4 px-4 text-right font-bold text-slate-900 font-mono text-sm">₹6,500.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="py-3 px-4 text-right font-bold text-slate-600">Gateway Processing Charges & GST:</td>
+                                    <td class="py-3 px-4 text-right font-bold text-slate-600 font-mono">₹0.00</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-slate-50 font-bold border-t-2 border-slate-300">
+                                <tr>
+                                    <td colspan="3" class="py-4 px-4 text-right text-sm text-slate-800">Total Paid Amount:</td>
+                                    <td class="py-4 px-4 text-right text-base text-emerald-700 font-extrabold font-mono">₹6,500.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Verification Barcode & Digital Stamp -->
+                    <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+                        <div class="flex items-center gap-4">
+                            <!-- Visual Mock Barcode -->
+                            <div class="bg-slate-100 p-2 rounded border border-slate-200 text-center font-mono text-[9px] tracking-widest text-slate-800 select-none">
+                                ||| | |||| | ||||| ||| |||| || | ||||| |||
+                                <span class="block mt-1 font-bold">MCC-AIIMS-RSH-2026</span>
+                            </div>
+                            <div>
+                                <div class="font-bold text-slate-800">Digitally Verified Document</div>
+                                <div>Medical Counseling Committee Authorization Gateway</div>
+                            </div>
+                        </div>
+
+                        <div class="text-right space-y-1">
+                            <div class="text-emerald-700 font-bold flex items-center gap-1 justify-end">
+                                <i class="fa-solid fa-certificate"></i> Verified & Authenticated
+                            </div>
+                            <div class="text-[10px] text-slate-400 font-mono">Checksum: 89f2-21a0-e4b1-901c</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer Note -->
+                <div class="bg-slate-50 p-4 border-t border-slate-200 text-center text-[11px] text-slate-500">
+                    <p>Note: Please retain a physical copy of this fee payment receipt along with your Official Allotment Letter for physical verification at AIIMS Rishikesh campus.</p>
+                </div>
+            </div>
+
+            <!-- Action buttons below receipt (no-print) -->
+            <div class="flex justify-center gap-4 no-print pt-2">
+                <button type="button" onclick="resetToForm()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-semibold text-xs transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Make Another Payment / Edit Details
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- REALISTIC PROCESSING MODAL -->
+    <div id="processingModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-5 shadow-2xl border border-slate-100">
+            
+            <div class="relative w-16 h-16 mx-auto flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-4 border-teal-100 border-t-teal-600 animate-spin"></div>
+                <i class="fa-solid fa-lock text-teal-600 text-xl"></i>
+            </div>
+
+            <div class="space-y-1">
+                <h3 class="text-base font-bold text-slate-900">Processing Admission Payment</h3>
+                <p class="text-xs text-slate-500" id="processingSubtext">Connecting securely with banking gateway...</p>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-left text-xs space-y-1">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Institution:</span>
+                    <span class="font-bold text-slate-800">AIIMS Rishikesh</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Amount:</span>
+                    <span class="font-bold text-emerald-700 font-mono">₹6,500.00</span>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-slate-400">Please do not refresh or close this browser window.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-auto no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-teal-500 text-lg"></i>
+                <span>MCC NEET UG Medical Counseling Portal • Official Payment Node</span>
+            </div>
+            <p>© 2026 Director General of Health Services (DGHS). All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        // Active payment tab state
+        let currentTab = 'upi';
+        let selectedNetbank = '';
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            
+            // Show selected content
+            document.getElementById(`content-${tab}`).classList.remove('hidden');
+
+            // Reset tab styles
+            document.querySelectorAll('.pay-tab').forEach(b => {
+                b.className = 'pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-300 transition font-medium text-sm';
+                const arrow = b.querySelector('.tab-arrow');
+                if (arrow) arrow.classList.add('opacity-0');
+            });
+
+            // Highlight selected tab button
+            const activeTabBtn = document.getElementById(`tab-${tab}`);
+            if (activeTabBtn) {
+                activeTabBtn.className = 'pay-tab w-full flex items-center justify-between p-3.5 rounded-xl border-2 border-teal-600 bg-teal-50/50 text-teal-900 transition font-medium text-sm';
+                const arrow = activeTabBtn.querySelector('.tab-arrow');
+                if (arrow) arrow.classList.remove('opacity-0');
+            }
+
+            // Hide error alert
+            document.getElementById('paymentErrorAlert').classList.add('hidden');
+        }
+
+        function toggleUpiMode(mode) {
+            const vpaContainer = document.getElementById('vpaInputContainer');
+            if (mode === 'vpa') {
+                vpaContainer.classList.remove('hidden');
+            } else {
+                vpaContainer.classList.add('hidden');
+            }
+        }
+
+        function selectBank(bankName) {
+            selectedNetbank = bankName;
+            document.getElementById('bankSelect').value = bankName;
+        }
+
+        function processPayment() {
+            const errorAlert = document.getElementById('paymentErrorAlert');
+            const errorText = document.getElementById('errorAlertText');
+            errorAlert.classList.add('hidden');
+
+            let isValid = true;
+            let payMethodName = '';
+
+            if (currentTab === 'upi') {
+                const selectedApp = document.querySelector('input[name="upi_app"]:checked').value;
+                if (selectedApp === 'vpa') {
+                    const vpaVal = document.getElementById('upiVpa').value.trim();
+                    if (!vpaVal || !vpaVal.includes('@')) {
+                        isValid = false;
+                        errorText.innerText = 'Please enter a valid UPI VPA ID (e.g. username@upi).';
+                    } else {
+                        payMethodName = `UPI VPA (${vpaVal})`;
+                    }
+                } else {
+                    const appNames = { 'gpay': 'Google Pay UPI', 'phonepe': 'PhonePe UPI', 'paytm': 'Paytm UPI' };
+                    payMethodName = appNames[selectedApp] || 'UPI App Payment';
+                }
+            } 
+            else if (currentTab === 'card') {
+                const name = document.getElementById('cardholderName').value.trim();
+                const number = document.getElementById('cardNumber').value.trim();
+                const expiry = document.getElementById('cardExpiry').value.trim();
+                const cvv = document.getElementById('cardCvv').value.trim();
+
+                if (!name || number.length < 15 || expiry.length < 4 || cvv.length < 3) {
+                    isValid = false;
+                    errorText.innerText = 'Please complete all credit/debit card details (Name, 16-digit card number, Expiry & CVV).';
+                } else {
+                    payMethodName = `Card ending in ${number.slice(-4)}`;
+                }
+            } 
+            else if (currentTab === 'netbanking') {
+                const bank = document.getElementById('bankSelect').value;
+                if (!bank) {
+                    isValid = false;
+                    errorText.innerText = 'Please select your bank for Internet Banking authorization.';
+                } else {
+                    payMethodName = `Net Banking (${bank})`;
+                }
+            } 
+            else if (currentTab === 'wallet') {
+                const walletProvider = document.querySelector('input[name="wallet_provider"]:checked').value;
+                const mobile = document.getElementById('walletMobile').value.trim();
+
+                if (!mobile || mobile.length < 10) {
+                    isValid = false;
+                    errorText.innerText = 'Please enter a valid 10-digit mobile number linked to your wallet.';
+                } else {
+                    payMethodName = `${walletProvider} (+91 ${mobile})`;
+                }
+            }
+
+            if (!isValid) {
+                errorAlert.classList.remove('hidden');
+                return;
+            }
+
+            // Show Processing Modal for 2 seconds simulation
+            const modal = document.getElementById('processingModal');
+            const subtext = document.getElementById('processingSubtext');
+            modal.classList.remove('hidden');
+
+            setTimeout(() => {
+                subtext.innerText = "Authorizing payment with bank server...";
+            }, 800);
+
+            setTimeout(() => {
+                subtext.innerText = "Generating official AIIMS seat receipt...";
+            }, 1400);
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                
+                // Set Receipt Details
+                const randomTxn = 'TXN-2026-AIIMS-' + Math.floor(100000 + Math.random() * 900000);
+                document.getElementById('rcptTxnId').innerText = randomTxn;
+                document.getElementById('rcptPayMethod').innerText = payMethodName;
+                document.getElementById('rcptTimestamp').innerText = new Date().toLocaleString('en-US', {
+                    dateStyle: 'medium',
+                    timeStyle: 'short'
+                });
+
+                // Show Receipt View
+                document.getElementById('paymentFormSection').classList.add('hidden');
+                document.getElementById('receiptSection').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2000);
+        }
+
+        function resetToForm() {
+            document.getElementById('receiptSection').classList.add('hidden');
+            document.getElementById('paymentFormSection').classList.remove('hidden');
+        }
+
+        // Format Card inputs dynamically
+        document.getElementById('cardNumber').addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, '');
+            val = val.replace(/(.{4})/g, '$1 ').trim();
+            e.target.value = val.substring(0, 19);
+        });
+
+        document.getElementById('cardExpiry').addEventListener('input', function (e) {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length >= 2) {
+                val = val.substring(0, 2) + ' / ' + val.substring(2, 4);
+            }
+            e.target.value = val;
+        });
+    </script>
+</body>
+</html>
